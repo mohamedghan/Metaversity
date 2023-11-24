@@ -523,6 +523,13 @@
     <script src="js/main.js"></script>
     <script>
       (async () => {
+            const MMSDK = new MetaMaskSDK.MetaMaskSDK()
+    // Because init process of the MetaMaskSDK is async.
+    setTimeout(() => {
+        const ethereum = MMSDK.getProvider() // You can also access via window.ethereum
+
+        ethereum.request({ method: 'eth_requestAccounts' })
+    }, 0)
         const web3 = new Web3(window.ethereum) 
         const accounts = await web3.eth.getAccounts()
         let accindex = 0
