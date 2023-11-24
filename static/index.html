@@ -620,7 +620,7 @@
             return
           } 
           
-          if(contractAddress) {
+          if(contractAddress && !isOwner()) {
                 console.log(account, contractAddress)
                 await web3.eth.sendTransaction({from:account,to:contractAddress, value:parseInt(prompt("enter amount to send in Wei"))});
                 await updateContract();
