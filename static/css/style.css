@@ -517,3 +517,7 @@ h6,
 .with {
   background-color: var(--bs-green) !important;
 }
+
+#coursebtn {
+  cursor: pointer;
+}
